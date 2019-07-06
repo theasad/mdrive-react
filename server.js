@@ -2,7 +2,7 @@ const next = require('next')
 const routes = require('./routes')
 const app = next({ dev: process.env.NODE_ENV !== 'production' })
 const handler = routes.getRequestHandler(app)
-
+const port = process.env.PORT || 8080;
 // With express
 const express = require('express')
 app
@@ -14,9 +14,9 @@ app
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             next();
         });
-        server.use(handler).listen(3000, err => {
+        server.use(handler).listen(port, err => {
             if (err) throw err;
-            console.log('> Ready on http://localhost:3000');
+            console.log(`> Ready on http://localhost:${port}`);
         });
 
     }).catch(ex => {

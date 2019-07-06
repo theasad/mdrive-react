@@ -13,7 +13,7 @@ class Error extends React.Component {
         if (this.props.statusCode && this.props.statusCode == 404) {
             return <React.Fragment><strong>404</strong> Page not found.</React.Fragment>
         } else if (this.props.statusCode) {
-            return `An error <strong>${this.props.statusCode}</strong> occurred on server`
+            return <React.Fragment>An error <strong>{this.props.statusCode}</strong> occurred on server</React.Fragment>
         } else {
             return 'An error occurred on client'
         }
@@ -22,7 +22,7 @@ class Error extends React.Component {
     render() {
         return (
             <Grid container spacing={1} style={{ alignItems: 'center', justifyContent: 'center' }}>
-                <Grid item style={{ marginTop: '3rem', display:'flex', flexDirection:'column', alignItems: 'center', justifyContent: 'center' }}>
+                <Grid item style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                     <Typography variant="h4" component="h4">
                         {this.errorRender()}
                     </Typography>

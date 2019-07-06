@@ -17,7 +17,7 @@
 
 1. Goto front-end directory
     ```
-    cd mdrive
+    cd mdrive-react
     ```
 2. Install all packages using npm (make sure install nodejs and npm on your machine)
     ```

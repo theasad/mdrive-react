@@ -106,7 +106,7 @@ class Index extends React.Component {
         if (this._isMounted) {
             this.setState({ hasError: false, breadCrumItems: this.state.breadCrumItems, isLoading: true, isOpenSnackBar: false });
         }
-        let API_URL = `${Config.API_BASE_URL}${slug != null ? slug : ''}`;
+        let API_URL = `${Config.API_BASE_URL}folders/${slug != null ? slug : ''}`;
 
         await axios.get(API_URL)
             .then(response => {
@@ -138,7 +138,8 @@ class Index extends React.Component {
     saveFolder = async (data) => {
         this.setState({ isLoading: true });
         this._isMounted = true;
-        await axios.post(Config.API_BASE_URL, data)
+        const api_url = `${Config.API_BASE_URL}folders/`
+        await axios.post(api_url, data)
             .then(response => {
                 if (this._isMounted) {
                     const data = response.data;
@@ -174,10 +175,10 @@ class Index extends React.Component {
             orderby: query.direction === 'desc' ? `-${query.orderBy}` : query.orderBy
         }
 
-        let API_URL = `${Config.API_BASE_URL}${slug ? `${slug}/` : ''}files`;
+        let API_URL = `${Config.API_BASE_URL}${slug ? `folders/${slug}/` : ''}files`;
 
         await axios.get(API_URL, {
-            params:params
+            params: params
         })
             .then(response => {
                 const data = response.data;
@@ -198,7 +199,7 @@ class Index extends React.Component {
     // Save file
 
     handleFileUploadForm = async (formData, filename) => {
-        let api_url = `${CONFIG.API_BASE_URL}${this.state.slug}/files/`;
+        let api_url = `${CONFIG.API_BASE_URL}${this.state.slug ? `folders/${this.state.slug}/` : ''}files/`;
         this._isMounted = true;
         this.setState({ isLoading: true, isOpenSnackBar: false });
 
